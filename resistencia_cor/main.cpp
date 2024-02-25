@@ -62,7 +62,8 @@ int Resistor::c2(string co2){
 	if (co2 == "azul"){return 60;}
 	if (co2 == "violeta"){return 70;}
 	if (co2 == "cinza"){return 80;}
-	if (co2 == "branco"){return 90;}}
+	if (co2 == "branco"){return 90;}
+}
 int Resistor::c3(string co3){
 	if (co3 == "preto"){return 0;}
 	if (co3 == "marrom"){return 1;}
@@ -74,7 +75,7 @@ int Resistor::c3(string co3){
 	if (co3 == "violeta"){return 7;}
 	if (co3 == "cinza"){return 8;}
 	if (co3 == "branco"){return 9;}
-}
+	}
 int Resistor::c4(string co4){ //numero_mutiplicador
 	if (co4 == "preto"){return 0;}
 	if (co4 == "marrom"){return 1;}
@@ -122,57 +123,60 @@ int main() {
     int quant;
 	Resistor res;
 	string cor1,cor2, cor3, cor4, cor5, cor6;
-	cout<< "QUESTÃO 3"<<endl<<endl;
-	cout<< "Digite a quantidade de faixa ";
-	quant = quantidade();
-	if (quant == 6){
-		cout<< "Digite o valor da faixa 1: ";
-		cin >> cor1;
-		cout<< "Digite o valor da faixa 2: ";
-		cin >> cor2;
-		cout<< "Digite o valor da faixa 3: ";
-		cin >> cor3;
-		cout<< "Digite o valor da faixa 4: ";
-		cin >> cor4;
-		cout<< "Digite o valor da faixa 5: ";
-		cin >> cor5;
-		cout<< "Digite o valor da faixa 6: ";
-		cin >> cor6;
-		res.p_6f(cor1,cor2, cor3, cor4, cor5, cor6);
-	}
-	else if (quant == 5){
-		cout<< "Digite o valor da faixa 1: ";
-		cin >> cor1;
-		cout<< "Digite o valor da faixa 2: ";
-		cin >> cor2;
-		cout<< "Digite o valor da faixa 3: ";
-		cin >> cor3;
-		cout<< "Digite o valor da faixa 4: ";
-		cin >> cor4;
-		cout<< "Digite o valor da faixa 5: ";
-		cin >> cor5;
-		res.p_5f(cor1,cor2, cor3, cor4, cor5);
-	}
-	else if (quant == 4){
-		cout<< "Digite o valor da faixa 1: ";
-		cin >> cor1;
-		cout<< "Digite o valor da faixa 2: ";
-		cin >> cor2;
-		cout<< "Digite o valor da faixa 3: ";
-		cin >> cor3;
-		cout<< "Digite o valor da faixa 4: ";
-		cin >> cor4;
-		res.p_4f(cor1,cor2, cor3, cor4);
-	}
-	else if (quant == 3){
-		cout<< "Digite o valor da faixa 1: ";
-		cin >> cor1;
-		cout<< "Digite o valor da faixa 2: ";
-		cin >> cor2;
-		cout<< "Digite o valor da faixa 3: ";
-		cin >> cor3;
-		res.p_3f(cor1,cor2, cor3);
-	}
-	
+	do{
+		cout<< "Digite a quantidade de faixa "<<endl;
+		quant = quantidade();
+		if (quant == 6){
+			cout<< "Digite o valor da faixa 1: ";
+			cin >> cor1;
+			cout<< "Digite o valor da faixa 2: ";
+			cin >> cor2;
+			cout<< "Digite o valor da faixa 3: ";
+			cin >> cor3;
+			cout<< "Digite o valor da faixa 4: ";
+			cin >> cor4;
+			cout<< "Digite o valor da faixa 5: ";
+			cin >> cor5;
+			cout<< "Digite o valor da faixa 6: ";
+			cin >> cor6;
+			res.p_6f(cor1,cor2, cor3, cor4, cor5, cor6);
+		}
+		else if (quant == 5){
+			cout<< "Digite o valor da faixa 1: ";
+			cin >> cor1;
+			cout<< "Digite o valor da faixa 2: ";
+			cin >> cor2;
+			cout<< "Digite o valor da faixa 3: ";
+			cin >> cor3;
+			cout<< "Digite o valor da faixa 4: ";
+			cin >> cor4;
+			cout<< "Digite o valor da faixa 5: ";
+			cin >> cor5;
+			res.p_5f(cor1,cor2, cor3, cor4, cor5);
+		}
+		else if (quant == 4){
+			cout<< "Digite o valor da faixa 1: ";
+			cin >> cor1;
+			cout<< "Digite o valor da faixa 2: ";
+			cin >> cor2;
+			cout<< "Digite o valor da faixa 3: ";
+			cin >> cor3;
+			cout<< "Digite o valor da faixa 4: ";
+			cin >> cor4;
+			res.p_4f(cor1,cor2, cor3, cor4);
+		}
+		else if (quant == 3){
+			cout<< "Digite o valor da faixa 1: ";
+			cin >> cor1;
+			cout<< "Digite o valor da faixa 2: ";
+			cin >> cor2;
+			cout<< "Digite o valor da faixa 3: ";
+			cin >> cor3;
+			res.p_3f(cor1,cor2, cor3);
+		}
+		else {
+			cout << "Quantidade digitada errada" <<endl;
+		}
+	}while(quant!=6 && quant!=5 && quant!=4 && quant!=3);
 	return 0;
 }

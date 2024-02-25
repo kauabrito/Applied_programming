@@ -3,7 +3,7 @@
 using namespace std;
 
 int quantidade(){
-	int quant;
-	cin >> quant;
-    return quant;
+	int quantidade_user;
+	cin >> quantidade_user;
+    return quantidade_user;
 }
