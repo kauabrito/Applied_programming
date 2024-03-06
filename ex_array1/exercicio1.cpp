@@ -3,9 +3,7 @@ using namespace std;
 
 class organizar{
     private:
-        int i=0;
         int array[10];
-
     public:
         void set_array(void);
         void organizar_array(void);
