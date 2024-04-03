@@ -81,7 +81,7 @@ int main()
             cout << "Quer cadastrar funcionario ou gerente? ";
             cin >> op2;
             if (op2 == "funcionario")
-            {   if (aux == i){cout << "Nao eh possivel mais cadastrar"<<endl; break;}
+            {   
                 cout<< "Digite o nome do funcionario "<< aux+1 << " : " <<endl;
                 cin >> nome;
                 (f+aux)->setNome(nome);
@@ -136,13 +136,13 @@ int main()
                 else if (op2 == "gerente")
                 {
                     cout << "Gerentes: "<< endl;
-                    for(int w=0;w<j;j++)
+                    for(int w=0;w<j;w++)
                     {   if((g+w)->getNome() != " "){
                         cout << w + 1 <<" - "<<(g+w)->getNome()<<endl;
                     }
                         else{continue;}
                     }
-                    cout << "Digite o numero: ";
+                    cout << "Digite o numero do gerente: ";
                     cin >> q;
                     q--;
                     cout << "Quantos porcento(%)? ";
@@ -166,7 +166,7 @@ int main()
                     cout << "Digite o numero do funcionario: ";
                     cin >> q;
                     q--;
-                    (f+q)->setNome("Demitido");
+                    (f+q)->setNome(" ");
                     (f+q)->setId(0);
                     (f+q)->setSalario(0);
                 }
@@ -180,10 +180,10 @@ int main()
                     cout << "Digite o numero do gerente: ";
                     cin >> q;
                     q--;
-                    (g+q)->setNome("Demitido");
+                    (g+q)->setNome(" ");
                     (g+q)->setId(0);
                     (g+q)->setSalario(0);
-                    (g+q)->setDepartamento("X");
+                    (g+q)->setDepartamento(" ");
                 } 
                 else {continue;}
             break;
