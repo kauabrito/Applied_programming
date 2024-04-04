@@ -83,7 +83,7 @@ int main()
     int v;
     vector <Cirurgia*> paciente;
     do {
-        cout << "[1] - Cadastrar paciente" << endl << "[2] - Cadastrar consulta" << endl << "[3] - Inserir valor da cirurgia " << endl << "[4] - Lista de pacientes" << endl << "[5] - Ficha do paciente" << endl << "[0] - Sair do programa" << endl;
+        cout << "[1] - Cadastrar paciente" << endl << "[2] - Cadastrar consulta" << endl << "[3] - Inserir valor da cirurgia " << endl << "[4] - Lista de pacientes" << endl << "[5] - Ficha do paciente" << endl <<"[6] - Remover paciente"<<endl<<"[0] - Sair do programa" << endl;
         cin >> v;
         switch (v)
         {
@@ -113,15 +113,18 @@ int main()
             cin >> nome;
             for(auto p : paciente) {
                 if(p->getNome2() == nome) {
-                    cout << "Digite o sintoma do paciente: "<<endl<<"[1] - moderado"<<endl<<"[2] - ruim"<<endl<<"[3] - emergencia"<<endl;
+                    cout << "Digite o Estado do paciente: "<<endl<<"[1] - moderado"<<endl<<"[2] - ruim"<<endl<<"[3] - emergencia"<<endl;
                     cin >> estado; 
                     // 0 - ainda não consultado, 1 - moderado , 2 - ruim , 3 - emergência
                     p->setEstado(estado);
-                    break;
-                    if(i == paciente.size()) 
-                    {
-                        cout <<"Paciente nao encontrado"<<endl;
-                    }
+                    cout << "Digite o Sintoma do paciente: "<< endl;
+                    cin >> sintoma;
+                    p->setSintoma(sintoma);
+                break;
+                }
+                else if (i == paciente.size()-1) 
+                {
+                    cout <<"Paciente nao encontrado"<<endl;
                 }
                 i++;
             }
@@ -129,6 +132,7 @@ int main()
         break;
 
         case 3:
+            i=0;
             if(paciente.empty()){cout << "Banco de dados vazio" << endl;}
             else
             {
@@ -136,16 +140,17 @@ int main()
                 cin >> nome;
                 for(auto p : paciente) {
                     if(p->getNome2() == nome) {
-                        cout << "Digite o valor da cirurgia do paciente:"<<endl<<"[1] - moderado"<<endl<<"[2] - ruim" <<endl<<"[3] - emergencia"<<endl;
+                        cout << "Valor da cirurgia: ";
                         cin >> valor; 
                         // 0 - ainda não consultado, 1 - moderado , 2 - ruim , 3 - emergência
                         p->setValor(valor);
                         break;
                     }
+                    else if(i == paciente.size()-1) 
+                    {
+                        cout <<"Paciente nao encontrado"<<endl;
+                    }
                     i++;
-                }
-                if(i == paciente.size()-1) {
-                    cout <<"Paciente nao encontrado"<<endl;
                 }
             }
             break;
@@ -173,11 +178,34 @@ int main()
                         x->Exibir();
                         break;
                     }
+                    else if(i == paciente.size()-1)
+                    {
+                        cout << "Paciente nao encontrado" <<endl;
+                    }
                     i++;
                 }
-                if(i == paciente.size()-1)
+                
+            }
+            break;
+        case 6:
+            i=0;
+            if(paciente.empty()){cout << "BANCO VAZIO" <<endl;}
+            else
+            {
+                cout << "Digite o nome do paciente que voceh quer remover" << endl;
+                cin >> nome;
+                for(auto p : paciente)
                 {
-                    cout << "Paciente nao encontrado" <<endl;
+                    if(p->getNome2() == nome)
+                    {
+                        paciente.erase(paciente.begin() + i);
+                        cout<< "Paciente excluido do banco de dados"<<endl;
+                        break;
+                    }
+                    else if (i == paciente.size() - 1){
+                        cout << "Paciente nao encontrado"<< endl;
+                    }
+                    i++;
                 }
             }
             break;
