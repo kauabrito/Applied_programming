@@ -245,11 +245,11 @@ int main() {
 				}
 				else{
 					cout << "Voce quer emprestar ou devolver"<<endl;
-                    cin.ignore();
+                    //cin.ignore();
 					getline(cin, aux);
 					if(aux == "emprestar"){
 						cout << "Voce quer Livro, revista ou AudioLivro? "<<endl;
-                        cin.ignore();
+                        //cin.ignore();
 						getline(cin, aux2);
 						if(aux2 == "livro"){
                             if(livro.empty()){cout <<"Nenhum livro cadastrado"<<endl;}
@@ -260,9 +260,14 @@ int main() {
 								
 							    for(auto x:livro){
 								    if(x->getI() == id)
-								{
-									cout << "Livro encontrado"<<endl;
-									x->emprestar(1);
+								{	
+									if(x->getStatus() == "Nunca emprestada" || x->getStatus() == "Devolvido. Portanto, esta no biblioteca"){
+										cout << "Livro Na biblioteca"<<endl;
+										x->emprestar(1);
+										break;
+									}
+									else{cout << "Nao eh possivel pegar emprestado, pois tem alguem com o livro!"<<endl;}
+									
 									break;
 								}
 								else if (i == livro.size()-1)
@@ -284,8 +289,13 @@ int main() {
 							for(auto x:revista){
 								if(x->getI() == id)
 								{
-									cout << "revista encontrada"<<endl;
-									x->emprestar(1);
+									if(x->getStatus() == "Nunca emprestada" || x->getStatus() == "Devolvido. Portanto, esta no biblioteca"){
+										cout << "Revista encontrada, revista na biblioteca!"<<endl;
+										x->emprestar(1);
+										break;
+									}
+									else{cout << "Nao eh possivel pegar emprestado, pois tem alguem com a Revista!"<<endl;}
+									
 									break;
 								}
 								else if (i == revista.size()-1)
@@ -304,11 +314,16 @@ int main() {
                                 cout << "Digite o id da audiolivro: "<<endl;
 								cin >> id;
 								
-							for(auto x:revista){
+							for(auto x:AL){
 								if(x->getI() == id)
 								{
-									cout << "audiolivro encontrado"<<endl;
-									x->emprestar(1);
+									if(x->getStatus() == "Nunca emprestada" || x->getStatus() == "Devolvido. Portanto, esta no biblioteca"){
+										cout << "AudioLivro encontrado, AudioLivro na biblioteca"<<endl;
+										x->emprestar(1);
+										break;
+									}
+									else{cout << "Nao eh possivel pegar emprestado, pois tem alguem com o AudioLivro!"<<endl;}
+									
 									break;
 								}
 								else if (i == AL.size()-1)
@@ -324,7 +339,7 @@ int main() {
 					
 					else if(aux == "devolver"){
 						cout << "Voce quer devolver Livro, revista ou AudioLivro? "<<endl;
-                        cin.ignore();
+                        //cin.ignore();
 						getline(cin, aux2);
 						if(aux2 == "livro"){
 								cout << "Digite o id do Livro: "<<endl;
@@ -333,9 +348,16 @@ int main() {
 							for(auto x:livro){
 								if(x->getI() == id)
 								{
-									cout << "Livro devolvido"<<endl;
-									x->devolver(0);
-									break;
+									if(x->getStatus() == "EMPRESTADO"){
+										cout << "Livro devolvido"<<endl;
+										x->devolver(0);
+										break;
+									}
+									else{
+										cout << "Nao eh possivel devolver se nao pegou emprestado" <<endl;
+										break;
+									}
+									
 								}
 								else if (i == livro.size()-1)
 								{
@@ -351,9 +373,15 @@ int main() {
 								
 							for(auto x:revista){
 								if(x->getI() == id)
-								{	x->devolver(0);
-									cout << "revista devolvida"<<endl;
-									break;
+								{	if(x->getStatus() == "EMPRESTADO"){
+										cout << "Revista devolvida"<<endl;
+										x->devolver(0);
+										break;
+									}
+									else{
+										cout << "Nao eh possivel devolver se nao pegou emprestado" <<endl;
+										break;
+									}
 								}
 								else if (i == revista.size()-1)
 								{
@@ -366,12 +394,18 @@ int main() {
 								cout << "Digite o id da audiolivro: ";
 								cin >> id;
 								
-							for(auto x:revista){
+							for(auto x:AL){
 								if(x->getI() == id)
 								{
-									x->devolver(0);
-									cout << "audiolivro encontrado"<<endl;
-									break;
+									if(x->getStatus() == "EMPRESTADO"){
+										cout << "AudioLivro devolvido"<<endl;
+										x->devolver(0);
+										break;
+									}
+									else{
+										cout << "Nao eh possivel devolver se nao pegou emprestado" <<endl;
+										break;
+									}
 								}
 								else if (i == AL.size()-1)
 								{
@@ -384,9 +418,6 @@ int main() {
 							cout <<"Opcao invalida"<<endl;
 						}
 					}
-                    else{
-							cout <<"Opcao invalida"<<endl;
-						}
 				}
 				break;
 				
