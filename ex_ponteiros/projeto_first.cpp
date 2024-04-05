@@ -166,7 +166,7 @@ int main() {
 				AL.back()->setI(id);
 				cout << "Escreva o narrador do AudioLivro: "<<endl;
 				cin.ignore();
-				getline(cin, titulo);
+				getline(cin, narrador);
 				AL.back()->setNarrador(narrador);
 				break;
 			case 4:
