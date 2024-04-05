@@ -28,6 +28,7 @@ public:
 };
 
 class ConsultaP : protected CadastroP {
+    
     string sintoma;
     int estado; // 0 - ainda não consultado, 1 - moderado , 2 - ruim , 3 - emergência
 public:
@@ -213,5 +214,7 @@ int main()
             break;
         }
     } while (v != 0);
+
+    paciente.clear();
     return 0;
 }
