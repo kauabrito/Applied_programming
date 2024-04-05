@@ -245,7 +245,7 @@ int main() {
 				}
 				else{
 					cout << "Voce quer emprestar ou devolver"<<endl;
-                    //cin.ignore();
+                    cin.ignore();
 					getline(cin, aux);
 					if(aux == "emprestar"){
 						cout << "Voce quer Livro, revista ou AudioLivro? "<<endl;
@@ -340,7 +340,8 @@ int main() {
 					else if(aux == "devolver"){
 						cout << "Voce quer devolver Livro, revista ou AudioLivro? "<<endl;
                         //cin.ignore();
-						getline(cin, aux2);
+						//getline(cin, aux2);
+						cin >> aux2;
 						if(aux2 == "livro"){
 								cout << "Digite o id do Livro: "<<endl;
 								cin >> id;
@@ -418,6 +419,7 @@ int main() {
 							cout <<"Opcao invalida"<<endl;
 						}
 					}
+					
 				}
 				break;
 				
