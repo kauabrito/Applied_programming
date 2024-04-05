@@ -255,7 +255,7 @@ int main() {
                             if(livro.empty()){cout <<"Nenhum livro cadastrado"<<endl;}
                             else
                             {
-                                cout << "Digite o id do Livro: ";
+                                cout << "Digite o id do Livro: "<<endl;
 								cin >> id;
 								
 							    for(auto x:livro){
@@ -278,7 +278,7 @@ int main() {
                             if(revista.empty()){cout <<"Nenhuma revista no cadastro"<<endl;}
 
                             else{
-                                cout << "Digite o id da revista: ";
+                                cout << "Digite o id da revista: "<<endl;
 								cin >> id;
 								
 							for(auto x:revista){
@@ -301,7 +301,7 @@ int main() {
                             if(AL.empty()){cout << "Nao existe nenhum audioLivro cadastrado" <<endl;}
 
                             else{
-                                cout << "Digite o id da audiolivro: ";
+                                cout << "Digite o id da audiolivro: "<<endl;
 								cin >> id;
 								
 							for(auto x:revista){
@@ -327,7 +327,7 @@ int main() {
                         cin.ignore();
 						getline(cin, aux2);
 						if(aux2 == "livro"){
-								cout << "Digite o id do Livro: ";
+								cout << "Digite o id do Livro: "<<endl;
 								cin >> id;
 								
 							for(auto x:livro){
