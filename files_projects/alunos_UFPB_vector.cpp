@@ -199,10 +199,7 @@ int main()
             break;
         }
     }while(op !=0);
-
-
-
-
+    
     alunos.clear();
     professores.clear();
     return 0;
