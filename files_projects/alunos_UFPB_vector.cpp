@@ -1,19 +1,23 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cstdint> //suportar a matricula
 using namespace std;
 class Aluno
 {
     protected:
-    string nome;
+    string nome, curso;
     int idade;
     float CRA;
+    int64_t matricula;
     public:
-    Aluno(string nome, int idade, float CRA)
+    Aluno(string nome, int idade, float CRA, int64_t matricula, string curso)
     {
         this -> nome = nome;
         this -> idade = idade;
         this -> CRA = CRA;
+        this -> matricula = matricula;
+        this ->curso = curso;
     }
     void setNome(string nome){this->nome = nome;}
     string getNome(){return nome;}
@@ -21,11 +25,17 @@ class Aluno
     int getIdade(){return idade;}
     void setCRA(float CRA){this->CRA = CRA;}
     float getCRA(){return CRA;}
+    void setMatricula(long matricula){this-> matricula = matricula;}
+    int64_t getMatricula(){return matricula;}
+    void setCurso(string curso){this-> curso = curso;}
+    string getCurso(){return curso;}
     void Exibir()
     {
-        cout <<"Nome :" << getNome()<<endl;
-        cout <<"Idade :" << getIdade()<<endl;
-        cout <<"CRA :" << getCRA()<<endl;
+        cout <<"Nome ..........:" << getNome()<<endl;
+        cout <<"Idade .........:" << getIdade()<<endl;
+        cout <<"CRA ...........:" << getCRA()<<endl;
+        cout <<"Matricula .....:" << getMatricula()<<endl;
+        cout <<"Curso .........:" << getCurso() <<endl;
     }
 };
 
@@ -34,7 +44,7 @@ class Professor : protected Aluno{
         int id;
         string departamento;
     public:
-        Professor(string nome, int idade, float CRA, int id, string departamento) : Aluno(nome, idade, CRA){
+        Professor(string nome, int idade, float CRA, int64_t id, string departamento) : Aluno(nome, idade, CRA, matricula, curso){
             setNome(nome);
             setIdade(idade);
             setCRA(CRA);
@@ -47,10 +57,10 @@ class Professor : protected Aluno{
         void setId(int id){
             this->id=id;
         }
-        int getId(){
+        int64_t getId(){
             return id;
         }
-        void setDepartamento(int departamento){
+        void setDepartamento(string departamento){
             this->departamento=departamento;
         }
         string getDepartamento(){
@@ -58,8 +68,10 @@ class Professor : protected Aluno{
         }
 
         void exibir2(){
-            Exibir();
-            cout << "ID: " << getId() << endl;
+            cout <<"Nome ..........:" << getNome()<<endl;
+            cout <<"Idade .........:" << getIdade()<<endl;
+            cout <<"CRA ...........:" << getCRA()<<endl;
+            cout << "ID ...........: " << getId() << endl;
             cout << "Departamento de " << getNome2() << ": "<< getDepartamento() << endl;
         }
 };
@@ -68,8 +80,10 @@ int main()
 {   
     int i;
     int op, idade,id;
+    //long matricula;
+    int64_t matricula;
     float CRA;
-    string departamento,nome;
+    string departamento,nome,curso;
 
     vector<Aluno*>alunos;
     vector<Professor*>professores;
@@ -86,16 +100,25 @@ int main()
         {
             case 1:
                 cout << "Digite o nome do aluno: "<<endl;
-                cin >> nome;
+                cin.ignore();
+                getline(cin, nome);
+                //cin >> nome;
                 cout << "Digite a idade do aluno: "<<endl;
                 cin >> idade;
                 cout << "Digite o CRA do aluno: "<<endl;
                 cin >> CRA;
-                alunos.push_back(new Aluno(nome, idade, CRA));
+                cout <<"Digite a matricula do aluno (sevirah para a exclusão no sistema): "<<endl;
+                cin >> matricula;
+                cout <<"Digite o curso de "<< nome<<" :"<<endl;
+                cin.ignore();
+                getline(cin, curso);
+                alunos.push_back(new Aluno(nome, idade, CRA, matricula, curso));
             break;
             case 2:
                 cout << "Digite o nome do professor: "<<endl;
-                cin >> nome;
+                cin.ignore();
+                getline(cin, nome);
+                //cin >> nome;
                 cout << "Digite a idade do professor: "<<endl;
                 cin >> idade;
                 cout << "Digite o CRA do professor: "<<endl;
@@ -103,7 +126,8 @@ int main()
                 cout << "Digite o id do professor: "<<endl;
                 cin >> id;
                 cout << "Digite o departamento do professor: "<<endl;
-                cin >> departamento;
+                cin.ignore();
+                getline(cin, departamento);
                 professores.push_back(new Professor(nome, idade, CRA, id, departamento));
             break;
             case 3:
@@ -111,11 +135,11 @@ int main()
                 if(alunos.empty()){cout << "NENHUM ALUNO CADASTRADO";}
                 else
                 {
-                    cout <<"Digite o nome do aluno: "<<endl;
-                    cin >> nome;
+                    cout <<"Digite a Matricula do aluno: "<<endl;
+                    cin >> matricula;
                     for(auto x:alunos)
                     {
-                        if(x->getNome() == nome)
+                        if(x->getMatricula() == matricula)
                         {
                             alunos.erase(alunos.begin() + i);
                             cout << "ALUNO DELETADO"<<endl;
@@ -135,7 +159,8 @@ int main()
                 if(professores.empty()) cout << "NENHUM PROFESSOR CADASTRADO" << endl;
                 else{
                     cout << "Digite o nome do professor que sera removido: " << endl;
-                    cin >> nome;
+                    cin.ignore();
+                    getline(cin, nome);
                     for(auto ptr : professores){
                         if(ptr->getNome2() == nome){
                             professores.erase(professores.begin() + i);
@@ -170,11 +195,11 @@ int main()
                 if(alunos.empty()){cout << "BANCO DE DADOS VAZIO"<<endl;}
                 else
                 {
-                    cout << "Digite o nome do aluno: "<<endl;
-                    cin >> nome;
+                    cout << "Digite a matricula do aluno: "<<endl;
+                    cin >> matricula;
                     for(auto x : alunos)
                     {
-                        if(x->getNome()==nome){x->Exibir(); break;}
+                        if(x->getMatricula()==matricula){x->Exibir(); break;}
                         else if (i == alunos.size()-1){cout <<"ALUNO NAO ENCONTRADO"<<endl;}
                         i++;
                     }
@@ -183,7 +208,9 @@ int main()
                 else{
                     i=0;
                     cout << "Digite o nome do professor: " << endl;
-                    cin >> nome;
+                    cin.ignore();
+                    getline(cin, nome);
+                    //cin >> nome;
                     for(auto ptr : professores){
                         if(ptr->getNome2() == nome){
                             ptr->exibir2();

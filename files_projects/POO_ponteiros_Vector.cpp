@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class CadastroP {
+class CadastroP { //ESSA CLASSE FAZ O CADASTRO INICIAL DO PACIENTE
 private:
     string nome;
     int idade;
@@ -27,10 +27,11 @@ public:
     int getNumero() { return numero; }
 };
 
-class ConsultaP : protected CadastroP {
+class ConsultaP : protected CadastroP { //DADOS DA TRIAGEM
     
     string sintoma;
     int estado; // 0 - ainda não consultado, 1 - moderado , 2 - ruim , 3 - emergência
+
 public:
     ConsultaP() {
         sintoma = "Ainda nao diagnosticado";
@@ -79,7 +80,7 @@ public:
 int main()
 {   int i; //variavel auxiliar
     string nome, sintoma;
-    int idade, cep, numero, estado;
+    long idade, cep, numero, estado;
     float valor;
     int v;
     vector <Cirurgia*> paciente;
@@ -91,7 +92,8 @@ int main()
         case 1:
             paciente.push_back(new Cirurgia);
             cout << "Digite o nome do paciente: " << endl;
-            cin >> nome;
+            cin.ignore();
+            getline(cin, nome);
             paciente.back()->setNome2(nome);
             cout << "Digite o idade do paciente: " << endl;
             cin >> idade;
@@ -111,7 +113,8 @@ int main()
         else 
         {
             cout << "Digite o nome do paciente: ";
-            cin >> nome;
+            cin.ignore();
+            getline(cin, nome);
             for(auto p : paciente) {
                 if(p->getNome2() == nome) {
                     cout << "Digite o Estado do paciente: "<<endl<<"[1] - moderado"<<endl<<"[2] - ruim"<<endl<<"[3] - emergencia"<<endl;
@@ -119,7 +122,8 @@ int main()
                     // 0 - ainda não consultado, 1 - moderado , 2 - ruim , 3 - emergência
                     p->setEstado(estado);
                     cout << "Digite o Sintoma do paciente: "<< endl;
-                    cin >> sintoma;
+                    cin.ignore();
+                    getline(cin, sintoma);
                     p->setSintoma(sintoma);
                 break;
                 }
@@ -138,14 +142,20 @@ int main()
             else
             {
                 cout << "Digite o nome do paciente: ";
-                cin >> nome;
+                cin.ignore();
+                getline(cin , nome);
                 for(auto p : paciente) {
                     if(p->getNome2() == nome) {
-                        cout << "Valor da cirurgia: ";
-                        cin >> valor; 
+                        if(p->getEstado() == "ainda nao consultado" && p->getSintoma() == "Ainda nao diagnosticado"){cout << "O paciente ainda não foi consulta"<<endl; break;}
+                        else
+                        {
+                            cout << "Valor da cirurgia: ";
+                            cin >> valor; 
                         // 0 - ainda não consultado, 1 - moderado , 2 - ruim , 3 - emergência
-                        p->setValor(valor);
-                        break;
+                            p->setValor(valor);
+                            break;
+                        }
+                        
                     }
                     else if(i == paciente.size()-1) 
                     {
@@ -171,7 +181,8 @@ int main()
             else
             {
                 cout <<"Voceh quer consultar fixa de qual paciente? "<<endl;
-                cin >> nome;
+                cin.ignore();
+                getline(cin, nome);
                 for(auto x : paciente)
                 {
                     if(x->getNome2() == nome)
@@ -194,7 +205,8 @@ int main()
             else
             {
                 cout << "Digite o nome do paciente que voceh quer remover" << endl;
-                cin >> nome;
+                cin.ignore();
+                getline(cin, nome);
                 for(auto p : paciente)
                 {
                     if(p->getNome2() == nome)
