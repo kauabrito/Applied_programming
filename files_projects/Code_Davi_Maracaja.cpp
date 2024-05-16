@@ -1,5 +1,5 @@
 /*
-Autor: Davi Maracaja
+Autor: Davi Maracaja Bastos
 Linkedin: https://www.linkedin.com/in/davi-maracaj%C3%A1-b45a41234/
 */
 #include<iostream>
