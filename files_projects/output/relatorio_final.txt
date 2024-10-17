@@ -1,0 +1,24 @@
+Banco: anco do Brasil
+Mes: Junho Valor da Fatura: 348.18
+Mes: Julho Valor da Fatura: 52.85
+Valor total consumido: 401.03
+Saldo Mensal: 534.97
+---------------------------
+Banco: Nubank
+Mes: Junho Valor da Fatura: 428.06
+Mes: Julho Valor da Fatura: 389.77
+Mes: Agosto Valor da Fatura: 207.33
+Mes: Setembro Valor da Fatura: 104.42
+Mes: Outubro Valor da Fatura: 53
+Valor total consumido: 1182.58
+Saldo Mensal: -1182.58
+---------------------------
+Banco: Will_bank
+Mes: Junho Valor da Fatura: 179.25
+Mes: Julho Valor da Fatura: 512.83
+Valor total consumido: 692.08
+Saldo Mensal: -692.08
+---------------------------
+Fatura Total de Todos os Bancos: 2275.69
+Entrada Total do Periodo: 4680
+Saldo Final após o Periodo: 2404.31
